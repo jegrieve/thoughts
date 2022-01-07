@@ -5,9 +5,9 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
+import { Menu as MenuIcon } from '@material-ui/icons';
 
-export default function Navbar() {
+const Navbar = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -29,4 +29,6 @@ export default function Navbar() {
       </AppBar>
     </Box>
   );
-}
+};
+
+export default Navbar;
