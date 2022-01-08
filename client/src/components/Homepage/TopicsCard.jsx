@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 
 const TopicsCard = () => {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card variant="outlined" sx={{ minWidth: 275 }}>
       <CardContent>
         <Typography>Topics</Typography>
       </CardContent>
