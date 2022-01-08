@@ -5,13 +5,6 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-const data = {
-  id: 1,
-  name: 'User',
-  time: '1:35 PM PST',
-  topic: 'funny',
-  body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-};
 
 const bull = (
   <Box
@@ -27,25 +20,25 @@ const bull = (
   </Box>
 );
 
-const PostCard = () => {
+const PostCard = (props) => {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275, marginTop: 2 }}>
       <CardContent>
         <Box>
-          <Typography variant="h5">> {data.topic}</Typography>
+          <Typography variant="h5">> {props.data.topic}</Typography>
         </Box>
         <Box display="flex" paddingX={1}>
           <Box>
-            <Typography component="p">{data.name}</Typography>
+            <Typography component="p">{props.data.name}</Typography>
           </Box>
           {bull}
           <Box>
-            <Typography component="p">{data.time}</Typography>
+            <Typography component="p">{props.data.time}</Typography>
           </Box>
         </Box>
         <Box>
           <Typography component="p" padding={1}>
-            {data.body}
+            {props.data.body}
           </Typography>
         </Box>
       </CardContent>
