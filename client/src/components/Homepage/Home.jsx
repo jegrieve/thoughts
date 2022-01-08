@@ -16,6 +16,9 @@ const Home = () => {
             <TopicsCard />
           </Grid>
           <Grid item xs={12} md={6}>
+            <Typography variant="h3" component="div">
+              Post feed
+            </Typography>
             <PostFeed />
           </Grid>
         </Grid>
