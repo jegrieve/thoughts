@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from "react";
-
+import React, { useState, useEffect } from 'react';
+import TopicsCard from './TopicsCard';
 const Home = () => {
   return (
-      <div>
-        This is a homepage.
-      </div>
-  )
-}
+    <div>
+      <TopicsCard />
+    </div>
+  );
+};
 
 export default Home;
