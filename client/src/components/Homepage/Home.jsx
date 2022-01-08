@@ -6,6 +6,11 @@ import PostFeed from './PostFeed';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+
 const Home = () => {
   return (
     <div className="homepage-container">
@@ -26,9 +31,21 @@ const Home = () => {
             <TopicsCard />
           </Grid>
           <Grid item xs={12} md={6}>
-            <Typography variant="h3" component="div">
+            <Typography variant="h3" component="span">
               Post feed
             </Typography>
+            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+              <Select
+                labelId="demo-simple-select-standard-label"
+                id="demo-simple-select-standard"
+                defaultValue={'newest'}
+                // value={age}
+                // onChange={handleChange}
+              >
+                <MenuItem value={'newest'}>newest</MenuItem>
+                <MenuItem value={'oldest'}>oldest</MenuItem>
+              </Select>
+            </FormControl>
             <PostFeed />
           </Grid>
         </Grid>
