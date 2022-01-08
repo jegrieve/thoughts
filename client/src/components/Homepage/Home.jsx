@@ -23,7 +23,7 @@ const Home = () => {
               </Typography>
               <TextField
                 id="standard-basic"
-                label="Standard"
+                label="search"
                 variant="standard"
               />
             </Box>
