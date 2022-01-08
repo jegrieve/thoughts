@@ -43,6 +43,11 @@ const PostCard = () => {
             <Typography component="p">{data.time}</Typography>
           </Box>
         </Box>
+        <Box>
+          <Typography component="p" padding={1}>
+            {data.body}
+          </Typography>
+        </Box>
       </CardContent>
     </Card>
   );
