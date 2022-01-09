@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import { FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
 
 const CreatePost = () => {
   return (
@@ -29,6 +31,18 @@ const CreatePost = () => {
                 id="create-post-home"
                 // label="Content"
               />
+              <InputLabel id="demo-simple-select-label">topic</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                //   value={age}
+                label="topic"
+                //   onChange={handleChange}
+              >
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
               <Button variant="outlined" type="submit">
                 Create
               </Button>
