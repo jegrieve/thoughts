@@ -10,6 +10,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
+import CreatePost from './CreatePost';
 
 const Home = () => {
   return (
@@ -17,7 +18,12 @@ const Home = () => {
       <Container>
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
-            <TopicsCard />
+            <Box>
+              <TopicsCard />
+            </Box>
+            <Box>
+              <CreatePost />
+            </Box>
           </Grid>
           <Grid item xs={12} md={6}>
             <Typography variant="h3" component="span">

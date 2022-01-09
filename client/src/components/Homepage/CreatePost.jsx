@@ -19,7 +19,6 @@ const CreatePost = () => {
           <Typography variant="h3" component="span">
             Create Post
           </Typography>
-          <TextField id="standard-basic" label="search" variant="standard" />
         </Box>
         <Box>
           <form>
@@ -27,8 +26,8 @@ const CreatePost = () => {
               <TextField
                 required
                 InputLabelProps={{ required: false }}
-                id="sign-in-username"
-                label="Username"
+                id="create-post-home"
+                // label="Content"
               />
               <Button variant="outlined" type="submit">
                 Create
