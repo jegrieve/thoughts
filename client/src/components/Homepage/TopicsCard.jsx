@@ -8,6 +8,8 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const TopicsCard = () => {
   const data = [
@@ -33,6 +35,8 @@ const TopicsCard = () => {
             Topics
           </Typography>
           <TextField id="standard-basic" label="search" variant="standard" />
+          <ArrowBackIosIcon />
+          <ArrowForwardIosIcon />
         </Box>
         <Grid container spacing={1}>
           {data.map((data) => {
