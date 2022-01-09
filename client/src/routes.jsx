@@ -4,7 +4,7 @@ import Home from './components/Homepage/Home';
 import Navbar from './components/Navbar/Navbar';
 import SignIn from './components/Session/SignIn';
 import SignUp from './components/Session/SignUp';
-
+import UserProfile from './components/Userpage/UserProfile';
 const AppRoutes = () => {
   return (
     <Router>
@@ -13,6 +13,7 @@ const AppRoutes = () => {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/sign-in" element={<SignIn />} />
         <Route exact path="/sign-up" element={<SignUp />} />
+        <Route exact path="/user-profile" element={<UserProfile />} />
       </Routes>
     </Router>
   );
