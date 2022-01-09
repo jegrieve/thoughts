@@ -6,6 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
+import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
 
 const TopicsCard = () => {
   const data = [
@@ -26,6 +28,12 @@ const TopicsCard = () => {
       sx={{ minWidth: 275, marginTop: 2, maxWidth: 450 }}
     >
       <CardContent>
+        <Box>
+          <Typography variant="h3" component="span">
+            Topics
+          </Typography>
+          <TextField id="standard-basic" label="search" variant="standard" />
+        </Box>
         <Grid container spacing={1}>
           {data.map((data) => {
             return (

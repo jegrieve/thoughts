@@ -17,17 +17,6 @@ const Home = () => {
       <Container>
         <Grid container spacing={5}>
           <Grid item xs={12} md={6}>
-            <Box>
-              <Typography variant="h3" component="span">
-                Topics
-              </Typography>
-              <TextField
-                id="standard-basic"
-                label="search"
-                variant="standard"
-              />
-            </Box>
-
             <TopicsCard />
           </Grid>
           <Grid item xs={12} md={6}>
