@@ -11,7 +11,7 @@ export const removeUser = () => {
   return (dispatch) => {
     dispatch({
       type: 'setUser',
-      padload: null,
+      payload: null,
     });
   };
 };
