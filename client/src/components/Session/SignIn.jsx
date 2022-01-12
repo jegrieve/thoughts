@@ -9,24 +9,64 @@ import CardContent from '@mui/material/CardContent';
 import { FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
 import { TextField } from '@mui/material';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
+  const [signInUserInputs, setSignInUserInputs] = useState({
+    username: '',
+    password: '',
+  });
+  const navigate = useNavigate();
+
+  const enterSignInInputs = (e) => {
+    setSignInUserInputs((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const submitUserInputs = (e) => {
+    e.preventDefault();
+    axios
+      .post('http://localhost:5000/api/v1/login', {
+        username: signInUserInputs['username'],
+        password: signInUserInputs['password'],
+      })
+      .then(function (response) {
+        console.log(response);
+        localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
+        //set user object on state
+        navigate('/');
+      })
+      .catch(function (error) {
+        console.log(error);
+        //add prop on textfield to show incorrect user/pass
+      });
+  };
+
   return (
     <Container maxWidth="sm">
       <Card>
         <CardContent>
           <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h2">Sign In</Typography>
-            <form>
-              <FormControl>
+            <form onSubmit={submitUserInputs}>
+              <FormControl onSubmit={submitUserInputs}>
                 <TextField
                   required
+                  onChange={enterSignInInputs}
+                  value={signInUserInputs['username']}
                   InputLabelProps={{ required: false }}
+                  name="username"
                   id="sign-in-username"
                   label="Username"
                 />
                 <TextField
                   required
+                  type="password"
+                  name="password"
+                  onChange={enterSignInInputs}
+                  value={signInUserInputs['password']}
                   InputLabelProps={{ required: false }}
                   id="sign-in-password"
                   label="Password"
