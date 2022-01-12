@@ -12,10 +12,36 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import CreatePost from './CreatePost';
 import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/index';
+import axios from 'axios';
 
 const Home = () => {
   const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const { getUser } = bindActionCreators(actionCreators, dispatch);
+
+  useEffect(() => {
+    if (localStorage.getItem('SavedToken') && !user) {
+      const token = localStorage.getItem('SavedToken').split(' ')[1];
+      axios
+        .post('http://localhost:5000/api/v1/login-session', {
+          headers: { Authorization: token },
+        })
+        .then(function (response) {
+          if (response.data.user) {
+            getUser(response.data.user);
+          } else {
+            console.log('No user found');
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  }, []);
   console.log(user);
+
   return (
     <div className="homepage-container">
       <Container>
