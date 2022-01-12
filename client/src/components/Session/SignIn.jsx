@@ -22,7 +22,7 @@ const SignIn = () => {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
   console.log(user);
-  //const AC = bindActionCreators(actionCreators, dispatch);
+
   const { getUser, removeUser } = bindActionCreators(actionCreators, dispatch);
 
   const navigate = useNavigate();
