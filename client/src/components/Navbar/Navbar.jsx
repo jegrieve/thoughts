@@ -7,9 +7,21 @@ import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { Menu as MenuIcon } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/index';
 import { Link } from 'react-router-dom';
 const Navbar = () => {
   const user = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+
+  const { removeUser } = bindActionCreators(actionCreators, dispatch);
+
+  const logoutUser = () => {
+    localStorage.removeItem('SavedToken');
+    removeUser();
+  };
+  console.log(user);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
@@ -19,7 +31,15 @@ const Navbar = () => {
           </Typography>
           {user ? (
             <Box>
-              <Link to="/">{user.username}</Link>
+              <Box sx={{ display: 'inline' }}>
+                <Link to="/">{user.username}</Link>
+              </Box>
+              <Box
+                onClick={logoutUser}
+                sx={{ paddingLeft: 2, display: 'inline' }}
+              >
+                Logout
+              </Box>
             </Box>
           ) : (
             <Button color="inherit">
