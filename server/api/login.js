@@ -33,4 +33,15 @@ router.post('/login', async (req, res) => {
   });
 });
 
+router.post('/login-session', async (req, res) => {
+  const jwtToken = req.body.headers.Authorization;
+  const decoded = jwt.verify(jwtToken, process.env.JWT_SECRET);
+  const user = await User.findOne({ where: { id: decoded.id } }).catch(
+    (err) => {
+      console.log('No Users Found');
+      res.json({ message: 'No user found' });
+    }
+  );
+  res.json({ user });
+});
 module.exports = router;
