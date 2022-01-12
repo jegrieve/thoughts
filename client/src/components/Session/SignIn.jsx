@@ -18,9 +18,10 @@ const SignIn = () => {
     username: '',
     password: '',
   });
+  const [formError, setFormError] = useState(false);
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();
-
+  console.log(user);
   //const AC = bindActionCreators(actionCreators, dispatch);
   const { getUser, removeUser } = bindActionCreators(actionCreators, dispatch);
 
@@ -42,26 +43,30 @@ const SignIn = () => {
       })
       .then(function (response) {
         console.log(response);
-        localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
-        //set user object on state
-        getUser(response.data.user);
-        navigate('/');
+        if (response.data.user) {
+          localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
+          getUser(response.data.user);
+          navigate('/');
+        } else {
+          setFormError(true);
+        }
       })
       .catch(function (error) {
-        console.log(error);
-        //add prop on textfield to show incorrect user/pass
+        setFormError(true);
       });
   };
 
   return (
     <Container maxWidth="sm">
-      <Card>
+      <Card sx={{ marginTop: 10 }}>
         <CardContent>
           <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h2">Sign In</Typography>
             <form onSubmit={submitUserInputs}>
               <FormControl onSubmit={submitUserInputs}>
                 <TextField
+                  error={formError}
+                  sx={{ marginTop: 3 }}
                   required
                   onChange={enterSignInInputs}
                   value={signInUserInputs['username']}
@@ -71,6 +76,8 @@ const SignIn = () => {
                   label="Username"
                 />
                 <TextField
+                  error={formError}
+                  sx={{ marginTop: 3 }}
                   required
                   type="password"
                   name="password"
@@ -80,7 +87,7 @@ const SignIn = () => {
                   id="sign-in-password"
                   label="Password"
                 />
-                <Button variant="outlined" type="submit">
+                <Button variant="outlined" type="submit" sx={{ marginTop: 3 }}>
                   Sign In
                 </Button>
               </FormControl>
