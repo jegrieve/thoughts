@@ -11,6 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import CreatePost from './CreatePost';
+import CreateTopic from './CreateTopic';
 
 const Home = () => {
   return (
@@ -20,6 +21,9 @@ const Home = () => {
           <Grid item xs={12} md={6}>
             <Box>
               <TopicsCard />
+            </Box>
+            <Box>
+              <CreateTopic />
             </Box>
             <Box>
               <CreatePost />
