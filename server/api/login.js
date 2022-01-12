@@ -31,7 +31,6 @@ router.post('/login', async (req, res) => {
       res.json({ message: 'Welcome Back!', token: jwtToken, user });
     }
   });
-  res.json({ message: 'Something went wrong.' });
 });
 
 module.exports = router;
