@@ -6,25 +6,26 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import { Menu as MenuIcon } from '@material-ui/icons';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
+  const user = useSelector((state) => state.user);
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            News
+            <Link to="/">Thoughts</Link>
           </Typography>
-          <Button color="inherit">Login</Button>
+          {user ? (
+            <Box>
+              <Link to="/">{user.username}</Link>
+            </Box>
+          ) : (
+            <Button color="inherit">
+              <Link to="/sign-in">Sign In</Link>
+            </Button>
+          )}
         </Toolbar>
       </AppBar>
     </Box>
