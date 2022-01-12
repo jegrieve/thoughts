@@ -10,12 +10,20 @@ import { FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
 import { TextField } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/index';
 const SignIn = () => {
   const [signInUserInputs, setSignInUserInputs] = useState({
     username: '',
     password: '',
   });
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
+  //const AC = bindActionCreators(actionCreators, dispatch);
+  const { getUser, removeUser } = bindActionCreators(actionCreators, dispatch);
+
   const navigate = useNavigate();
 
   const enterSignInInputs = (e) => {
@@ -36,6 +44,7 @@ const SignIn = () => {
         console.log(response);
         localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
         //set user object on state
+        getUser(response.data.user);
         navigate('/');
       })
       .catch(function (error) {

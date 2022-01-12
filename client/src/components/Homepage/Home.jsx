@@ -11,8 +11,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import CreatePost from './CreatePost';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Home = () => {
+  const user = useSelector((state) => state.user);
+  console.log(user);
   return (
     <div className="homepage-container">
       <Container>
