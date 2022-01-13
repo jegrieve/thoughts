@@ -3,7 +3,7 @@ const reducer = (state = [], action) => {
     case 'setTopics':
       return action.payload;
     case 'appendTopic':
-      return [...action, action.payload];
+      return [...state, action.payload];
     default:
       return state;
   }
