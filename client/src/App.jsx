@@ -7,8 +7,11 @@ import axios from 'axios';
 
 const App = () => {
   const user = useSelector((state) => state.user);
+  const topic = useSelector((state) => state.topic);
+  console.log(topic);
+
   const dispatch = useDispatch();
-  const { getUser } = bindActionCreators(actionCreators, dispatch);
+  const { getUser, setTopics } = bindActionCreators(actionCreators, dispatch);
 
   useEffect(() => {
     if (localStorage.getItem('SavedToken') && !user) {
@@ -34,12 +37,15 @@ const App = () => {
     axios
       .get('http://localhost:5000/api/v1/topics')
       .then((res) => {
-        console.log(res);
+        const topics = res.data.map((el) => {
+          return el.name;
+        });
+        setTopics(topics);
       })
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
   console.log(user);
 
   return <Routes />;
