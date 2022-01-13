@@ -15,7 +15,7 @@ const CreateTopic = () => {
   const enterCreateTopicInput = (e) => {
     setCreateTopicInput((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.toLowerCase(),
     }));
   };
 
@@ -50,6 +50,7 @@ const CreateTopic = () => {
 
   const handleFormSubmitSucess = () => {
     setFormError(false);
+    setCreateTopicInput({ name: '' });
     //set states of topic and post to the submitted topic.
   };
 
