@@ -3,18 +3,14 @@ const passport = require('passport');
 const { Topic } = require('../models');
 const router = express.Router();
 
-router.get(
-  '/topics',
-  passport.authenticate('jwt', { session: false }),
-  async (req, res) => {
-    try {
-      const topics = await Topic.findAll();
-      return res.json(topics);
-    } catch (err) {
-      return res.status(500).json({ error: 'Something went wrong' });
-    }
+router.get('/topics', async (req, res) => {
+  try {
+    const topics = await Topic.findAll();
+    return res.json(topics);
+  } catch (err) {
+    return res.json({ message: 'Something went wrong' });
   }
-);
+});
 
 router.post(
   '/create-topic',
