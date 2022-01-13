@@ -29,7 +29,19 @@ const App = () => {
         });
     }
   }, []);
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/v1/topics')
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
   console.log(user);
+
   return <Routes />;
 };
 
