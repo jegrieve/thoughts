@@ -15,3 +15,30 @@ export const removeUser = () => {
     });
   };
 };
+
+export const setTopics = (topics) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'setTopics',
+      payload: topics,
+    });
+  };
+};
+
+export const appendTopic = (topic) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'appendTopic',
+      payload: topic,
+    });
+  };
+};
+
+export const setMainTopic = (topic) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'setMainTopic',
+      payload: topic,
+    });
+  };
+};
