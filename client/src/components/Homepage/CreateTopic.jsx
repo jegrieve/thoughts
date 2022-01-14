@@ -7,10 +7,21 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import { FormControl } from '@mui/material';
 import axios from 'axios';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/index';
 
 const CreateTopic = () => {
   const [createTopicInput, setCreateTopicInput] = useState({ name: '' });
   const [formError, setFormError] = useState(false);
+  const topics = useSelector((state) => state.topic);
+  const state = useSelector((s) => s);
+  console.log(state);
+  const dispatch = useDispatch();
+  const { setMainTopic, appendTopic } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   const enterCreateTopicInput = (e) => {
     setCreateTopicInput((prev) => ({
@@ -33,14 +44,10 @@ const CreateTopic = () => {
         }
       )
       .then(function (response) {
-        console.log(response);
         if (response.data.uuid) {
-          //if user not signed in, we should disable btns,
-          handleFormSubmitSucess();
+          handleFormSubmitSucess(response.data.name);
         } else {
-          if (response.data.errors) {
-            setFormError(true);
-          }
+          setFormError(true);
         }
       })
       .catch(function (error) {
@@ -48,10 +55,13 @@ const CreateTopic = () => {
       });
   };
 
-  const handleFormSubmitSucess = () => {
+  const handleFormSubmitSucess = (name) => {
     setFormError(false);
     setCreateTopicInput({ name: '' });
-    //set states of topic and post to the submitted topic.
+    setMainTopic(name);
+    if (topics.indexOf(name) === -1) {
+      appendTopic(name);
+    }
   };
 
   return (

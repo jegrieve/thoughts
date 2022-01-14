@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -10,20 +10,52 @@ import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/index';
 
 const TopicsCard = () => {
-  const data = [
-    { name: 'funny' },
-    { name: 'news' },
-    { name: 'sports' },
-    { name: 'random' },
-    { name: 'dev' },
-    { name: 'funny' },
-    { name: 'news' },
-    { name: 'sports' },
-    { name: 'random' },
-    { name: 'dev' },
-  ];
+  const [offset, setOffset] = useState(0);
+  const [selectTopicInputs, setSelectTopicInputs] = useState('');
+  const [selectedTopics, setSelectedTopics] = useState([]);
+  const topics = useSelector((state) => state.topic);
+
+  const dispatch = useDispatch();
+  const { setMainTopic } = bindActionCreators(actionCreators, dispatch);
+
+  useEffect(() => {
+    setSelectedTopics(topics);
+  }, [topics]);
+
+  useEffect(() => {
+    if (selectTopicInputs === '') {
+      setOffset(0);
+      setSelectedTopics(topics);
+    } else {
+      const charMatchesArr = getMatchingChars();
+      setOffset(0);
+      setSelectedTopics(charMatchesArr);
+    }
+  }, [selectTopicInputs]);
+
+  const getMatchingChars = () => {
+    const a = topics.filter((el) => {
+      return el.slice(0, selectTopicInputs.length) === selectTopicInputs;
+    });
+    return a;
+  };
+
+  const increaseOffset = () => {
+    if (offset + 6 < selectedTopics.length) {
+      setOffset(offset + 6);
+    }
+  };
+  const decreaseOffset = () => {
+    if (offset !== 0) {
+      setOffset(offset - 6);
+    }
+  };
+
   return (
     <Card
       variant="outlined"
@@ -34,16 +66,21 @@ const TopicsCard = () => {
           <Typography variant="h3" component="span">
             Topics
           </Typography>
-          <TextField id="standard-basic" label="search" variant="standard" />
-          <ArrowBackIosIcon />
-          <ArrowForwardIosIcon />
+          <TextField
+            onChange={(e) => setSelectTopicInputs(e.target.value)}
+            id="standard-basic"
+            label="search"
+            variant="standard"
+          />
+          <ArrowBackIosIcon onClick={decreaseOffset} />
+          <ArrowForwardIosIcon onClick={increaseOffset} />
         </Box>
         <Grid container spacing={1}>
-          {data.map((data) => {
+          {selectedTopics.slice(offset, offset + 6).map((name) => {
             return (
               <Grid item xs={6}>
-                <Box>
-                  <Typography>{data.name}</Typography>
+                <Box onClick={() => setMainTopic(name)}>
+                  <Typography>{name}</Typography>
                 </Box>
               </Grid>
             );
