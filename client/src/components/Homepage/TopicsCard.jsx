@@ -67,7 +67,7 @@ const TopicsCard = () => {
             Topics
           </Typography>
           <TextField
-            onChange={(e) => setSelectTopicInputs(e.target.value)}
+            onChange={(e) => setSelectTopicInputs(e.target.value.toLowerCase())}
             id="standard-basic"
             label="search"
             variant="standard"
