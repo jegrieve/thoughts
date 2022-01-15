@@ -38,14 +38,14 @@ router.post(
 );
 
 router.get('/homepage-posts', async (req, res) => {
-  const { name, limit } = req.query;
+  const { name, limit, order } = req.query;
   const topic = await Topic.findOne({ where: { name: name } }).catch((err) => {
     return res.json({ message: 'No Topic found' });
   });
   const posts = await Post.findAll({
     where: { topicId: topic.id },
     limit,
-    order: [['createdAt', 'DESC']],
+    order: [['createdAt', order]],
   }).catch((err) => {
     return res.json({ message: 'No Posts Found' });
   });

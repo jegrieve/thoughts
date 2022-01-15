@@ -60,3 +60,12 @@ export const setHomeLimit = (limit) => {
     });
   };
 };
+
+export const setPostOrder = (order) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'setPostOrder',
+      payload: order,
+    });
+  };
+};

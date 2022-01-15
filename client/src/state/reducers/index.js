@@ -4,6 +4,7 @@ import topicReducer from './topicReducer';
 import mainTopicReducer from './mainTopicReducer';
 import homePostReducer from './homePostReducer';
 import homeLimitReducer from './homeLimitReducer';
+import homePostOrderReducer from './homePostOrderReducer';
 
 const reducers = combineReducers({
   user: userReducer,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
   mainTopic: mainTopicReducer,
   homePost: homePostReducer,
   homeLimit: homeLimitReducer,
+  homePostOrder: homePostOrderReducer,
 });
 
 export default reducers;
