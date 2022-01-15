@@ -1,67 +1,42 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PostCard from './PostCard';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
+import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 const PostFeed = () => {
-  const data = [
-    {
-      id: 1,
-      name: 'User',
-      time: '1:35 PM PST',
-      topic: 'funny',
-      body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-    },
-    {
-      id: 1,
-      name: 'User',
-      time: '1:35 PM PST',
-      topic: 'funny',
-      body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-    },
-    {
-      id: 1,
-      name: 'User',
-      time: '1:35 PM PST',
-      topic: 'funny',
-      body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-    },
-    // {
-    //   id: 1,
-    //   name: 'User',
-    //   time: '1:35 PM PST',
-    //   topic: 'funny',
-    //   body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-    // },
-    // {
-    //   id: 1,
-    //   name: 'User',
-    //   time: '1:35 PM PST',
-    //   topic: 'funny',
-    //   body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-    // },
-    // {
-    //   id: 1,
-    //   name: 'User',
-    //   time: '1:35 PM PST',
-    //   topic: 'funny',
-    //   body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-    // },
-    // {
-    //   id: 1,
-    //   name: 'User',
-    //   time: '1:35 PM PST',
-    //   topic: 'funny',
-    //   body: 'this is an example message for this app, this is where the user can post his brilliant ideas/thoughts/jokes/other',
-    // },
-  ];
+  // const [loadedPosts, setLoadedPosts] = useState([]);
+  // const [postLimit, setPostLimit] = useState(4);
+  // const mainTopic = useSelector((state) => state.mainTopic);
+
+  //my issue now, is on app load, i need to get a maintopic and initially it doesnt have a main topic.
+
+  // useEffect(() => {
+  //   getSelectedPosts();
+  // }, []);
+
+  // const getSelectedPosts = () => {
+  //   axios
+  //     .get(
+  //       `http://localhost:5000/api/v1/homepage-posts?name=${mainTopic}&limit=${postLimit}`
+  //     )
+  //     .then((res) => {
+  //       if (res.data) {
+  //         setLoadedPosts(res.data);
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   return (
     <div>
-      {data.map((data) => {
+      {/* {loadedPosts.map((data) => {
         return <PostCard data={data} />;
-      })}
+      })} */}
       <Button>Load More</Button>
     </div>
   );

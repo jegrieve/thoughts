@@ -1,6 +1,6 @@
-const reducer = (state = 'coding', action) => {
+const reducer = (state = 4, action) => {
   switch (action.type) {
-    case 'setMainTopic':
+    case 'setHomeLimit':
       return action.payload;
     default:
       return state;

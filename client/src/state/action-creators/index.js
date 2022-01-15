@@ -42,3 +42,21 @@ export const setMainTopic = (topic) => {
     });
   };
 };
+
+export const setHomePosts = (postsArr) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'setHomePosts',
+      payload: postsArr,
+    });
+  };
+};
+
+export const setHomeLimit = (limit) => {
+  return (dispatch) => {
+    dispatch({
+      type: 'setHomeLimit',
+      payload: limit,
+    });
+  };
+};

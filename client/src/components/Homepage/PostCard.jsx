@@ -25,15 +25,15 @@ const PostCard = (props) => {
     <Card sx={{ minWidth: 275, marginTop: 2 }}>
       <CardContent>
         <Box>
-          <Typography variant="h5">> {props.data.topic}</Typography>
+          <Typography variant="h5">Topic Id:{props.data.topicId}</Typography>
         </Box>
         <Box display="flex" paddingX={1}>
           <Box>
-            <Typography component="p">{props.data.name}</Typography>
+            <Typography component="p">User Id:{props.data.userId}</Typography>
           </Box>
           {bull}
           <Box>
-            <Typography component="p">{props.data.time}</Typography>
+            {/* <Typography component="p">{props.data.time}</Typography> */}
           </Box>
         </Box>
         <Box>
