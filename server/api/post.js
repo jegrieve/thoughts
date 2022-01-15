@@ -45,6 +45,7 @@ router.get('/homepage-posts', async (req, res) => {
   const posts = await Post.findAll({
     where: { topicId: topic.id },
     limit,
+    order: [['createdAt', 'DESC']],
   }).catch((err) => {
     return res.json({ message: 'No Posts Found' });
   });

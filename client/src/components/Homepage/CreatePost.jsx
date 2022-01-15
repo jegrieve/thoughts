@@ -9,14 +9,20 @@ import TextField from '@mui/material/TextField';
 import { FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/index';
 import axios from 'axios';
 
 const CreatePost = () => {
   const [postInput, setPostInput] = useState('');
   const [formError, setFormError] = useState(false);
+  const postLimit = useSelector((state) => state.homeLimit);
   const currentTopic = useSelector((state) => state.mainTopic);
   const topic = useSelector((state) => state.mainTopic);
+
+  const dispatch = useDispatch();
+  const { setHomeLimit } = bindActionCreators(actionCreators, dispatch);
 
   const enterPostInputs = (e) => {
     setPostInput(e.target.value);
@@ -49,6 +55,7 @@ const CreatePost = () => {
           console.log(response);
           setFormError(false);
           setPostInput('');
+          setHomeLimit(postLimit + 1);
         } else {
           console.log(response);
           setFormError(true);
