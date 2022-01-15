@@ -9,8 +9,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ User, Topic }) {
       // define association here
-      thisBelongsTo(User, { foreignKey: 'userId' });
-      thisBelongsTo(Topic, { foreignKey: 'topicId' });
+      this.belongsTo(User, { foreignKey: 'userId' });
+      this.belongsTo(Topic, { foreignKey: 'topicId' });
     }
   }
   Post.init(
