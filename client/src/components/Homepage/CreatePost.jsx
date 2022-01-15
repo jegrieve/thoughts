@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -9,8 +9,57 @@ import TextField from '@mui/material/TextField';
 import { FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 const CreatePost = () => {
+  const [postInput, setPostInput] = useState('');
+  const [formError, setFormError] = useState(false);
+  const currentTopic = useSelector((state) => state.mainTopic);
+  const topic = useSelector((state) => state.mainTopic);
+
+  const enterPostInputs = (e) => {
+    setPostInput(e.target.value);
+  };
+
+  const getCurrentTopic = () => {
+    if (currentTopic !== '') {
+      return currentTopic;
+    } else {
+      return 'Choose a topic';
+    }
+  };
+
+  const submitCreatePostInput = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem('SavedToken');
+    axios
+      .post(
+        'http://localhost:5000/api/v1/create-post',
+        {
+          name: topic,
+          body: postInput,
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
+      .then(function (response) {
+        if (response.data.uuid) {
+          console.log(response);
+          setFormError(false);
+          setPostInput('');
+        } else {
+          console.log(response);
+          setFormError(true);
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+        setFormError(true);
+      });
+  };
+
   return (
     <Card
       variant="outlined"
@@ -23,26 +72,24 @@ const CreatePost = () => {
           </Typography>
         </Box>
         <Box>
-          <form>
+          <form onSubmit={submitCreatePostInput}>
             <FormControl>
               <TextField
-                required
-                InputLabelProps={{ required: false }}
-                id="create-post-home"
-                // label="Content"
+                disabled
+                id="filled-disabled"
+                variant="filled"
+                value={getCurrentTopic()}
               />
-              <InputLabel id="demo-simple-select-label">topic</InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                //   value={age}
-                label="topic"
-                //   onChange={handleChange}
-              >
-                <MenuItem value={10}>Ten</MenuItem>
-                <MenuItem value={20}>Twenty</MenuItem>
-                <MenuItem value={30}>Thirty</MenuItem>
-              </Select>
+              <TextField
+                id="outlined-multiline-static"
+                label="Thoughts?"
+                multiline
+                onChange={enterPostInputs}
+                error={formError}
+                value={postInput}
+                rows={4}
+                required
+              />
               <Button variant="outlined" type="submit">
                 Create
               </Button>
