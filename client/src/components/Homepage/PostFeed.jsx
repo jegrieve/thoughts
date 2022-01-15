@@ -4,40 +4,50 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
 import axios from 'axios';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { actionCreators } from '../../state/index';
 
 const PostFeed = () => {
-  // const [loadedPosts, setLoadedPosts] = useState([]);
-  // const [postLimit, setPostLimit] = useState(4);
-  // const mainTopic = useSelector((state) => state.mainTopic);
+  const mainTopic = useSelector((state) => state.mainTopic);
+  const postLimit = useSelector((state) => state.homeLimit);
+  const homePosts = useSelector((state) => state.homePost);
+  const dispatch = useDispatch();
 
-  //my issue now, is on app load, i need to get a maintopic and initially it doesnt have a main topic.
+  const { setHomeLimit, setHomePosts } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
-  // useEffect(() => {
-  //   getSelectedPosts();
-  // }, []);
+  useEffect(() => {
+    getSelectedPosts();
+  }, [postLimit]);
 
-  // const getSelectedPosts = () => {
-  //   axios
-  //     .get(
-  //       `http://localhost:5000/api/v1/homepage-posts?name=${mainTopic}&limit=${postLimit}`
-  //     )
-  //     .then((res) => {
-  //       if (res.data) {
-  //         setLoadedPosts(res.data);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
+  const getSelectedPosts = () => {
+    axios
+      .get(
+        `http://localhost:5000/api/v1/homepage-posts?name=${mainTopic}&limit=${postLimit}`
+      )
+      .then((res) => {
+        if (res.data) {
+          setHomePosts(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getMorePosts = () => {
+    setHomeLimit(postLimit + 4);
+  };
 
   return (
     <div>
-      {/* {loadedPosts.map((data) => {
+      {homePosts.map((data) => {
         return <PostCard data={data} />;
-      })} */}
-      <Button>Load More</Button>
+      })}
+      <Button onClick={getMorePosts}>Load More</Button>
     </div>
   );
 };
