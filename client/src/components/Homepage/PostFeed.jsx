@@ -23,6 +23,10 @@ const PostFeed = () => {
     getSelectedPosts();
   }, [postLimit]);
 
+  useEffect(() => {
+    getSelectedPosts();
+  }, [mainTopic]);
+
   const getSelectedPosts = () => {
     axios
       .get(
