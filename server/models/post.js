@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(User, { foreignKey: 'userId' });
       this.belongsTo(Topic, { foreignKey: 'topicId' });
     }
+    toJSON() {
+      return { ...this.get(), id: undefined };
+    }
   }
   Post.init(
     {
@@ -22,6 +25,7 @@ module.exports = (sequelize, DataTypes) => {
       body: {
         type: DataTypes.STRING,
         allowNull: false,
+        notEmpty: true,
       },
       userId: {
         type: DataTypes.INTEGER,
