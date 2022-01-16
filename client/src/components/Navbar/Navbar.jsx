@@ -32,7 +32,7 @@ const Navbar = () => {
           {user ? (
             <Box>
               <Box sx={{ display: 'inline' }}>
-                <Link to="/">{user.username}</Link>
+                <Link to={`/user/${user.uuid}`}>{user.username}</Link>
               </Box>
               <Box
                 onClick={logoutUser}
