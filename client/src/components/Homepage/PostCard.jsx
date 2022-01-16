@@ -6,34 +6,16 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-const bull = (
-  <Box
-    component="span"
-    sx={{
-      display: 'flex',
-      alignItems: 'center',
-      mx: '3px',
-      transform: 'scale(1.5)',
-    }}
-  >
-    •
-  </Box>
-);
-
 const PostCard = (props) => {
   return (
     <Card sx={{ minWidth: 275, marginTop: 2 }}>
       <CardContent>
         <Box>
-          <Typography variant="h5">Topic Id:{props.data.topicId}</Typography>
+          <Typography variant="h5">{props.data.Topic.name}</Typography>
         </Box>
         <Box display="flex" paddingX={1}>
           <Box>
-            <Typography component="p">User Id:{props.data.userId}</Typography>
-          </Box>
-          {bull}
-          <Box>
-            {/* <Typography component="p">{props.data.time}</Typography> */}
+            <Typography component="p">{props.data.User.username}</Typography>
           </Box>
         </Box>
         <Box>
