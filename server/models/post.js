@@ -13,7 +13,12 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(Topic, { foreignKey: 'topicId' });
     }
     toJSON() {
-      return { ...this.get(), id: undefined };
+      return {
+        ...this.get(),
+        id: undefined,
+        userId: undefined,
+        topicId: undefined,
+      };
     }
   }
   Post.init(
