@@ -55,6 +55,24 @@ router.get('/homepage-posts', async (req, res) => {
   return res.json(posts);
 });
 
+router.get('/user-posts', async (req, res) => {
+  const { limit, userId, order } = req.query;
+
+  const user = await User.findOne({ where: { uuid: userId } }).catch((err) => {
+    return res.json({ message: 'No user found' });
+  });
+
+  const posts = await Post.findAll({
+    where: { userId: user.id },
+    limit,
+    order: [['createdAt', order]],
+    include: [User, Topic],
+  }).catch((err) => {
+    return res.json({ message: 'No user found' });
+  });
+  return res.json(posts);
+});
+
 //WIGB, now the create post works
 //make the frontend now able to create posts.
 
