@@ -12,7 +12,7 @@ import { TextField } from '@mui/material';
 const SignUp = () => {
   return (
     <Container maxWidth="sm">
-      <Card>
+      <Card sx={{ marginTop: 10 }}>
         <CardContent>
           <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h2">Sign Up</Typography>
@@ -20,29 +20,33 @@ const SignUp = () => {
               <FormControl>
                 <TextField
                   required
+                  sx={{ marginTop: 3 }}
                   InputLabelProps={{ required: false }}
                   id="sign-up-username"
                   label="Username"
                 />
                 <TextField
                   required
+                  sx={{ marginTop: 3 }}
                   InputLabelProps={{ required: false }}
                   id="sign-up-email"
                   label="Email"
                 />
                 <TextField
                   required
+                  sx={{ marginTop: 3 }}
                   InputLabelProps={{ required: false }}
                   id="sign-up-password"
                   label="Password"
                 />
                 <TextField
                   required
+                  sx={{ marginTop: 3 }}
                   InputLabelProps={{ required: false }}
                   id="sign-up-password-confirm"
                   label="Password Confirmation"
                 />
-                <Button variant="outlined" type="submit">
+                <Button sx={{ marginTop: 3 }} variant="outlined" type="submit">
                   Sign Up
                 </Button>
               </FormControl>
