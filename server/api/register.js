@@ -2,6 +2,7 @@ const express = require('express');
 const { User } = require('../models');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 router.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
@@ -14,7 +15,11 @@ router.post('/register', async (req, res) => {
       const savedUser = newUser
         .save()
         .then(() => {
-          res.json({ message: 'User registered' });
+          const jwtToken = jwt.sign(
+            { id: newUser.id, username: newUser.username },
+            process.env.JWT_SECRET
+          );
+          res.json({ token: jwtToken, newUser });
         })
         .catch((err) => {
           res.json({ error: 'Cannot register user at the moment!' });
