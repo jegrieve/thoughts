@@ -39,27 +39,20 @@ router.post(
 
 router.get('/homepage-posts', async (req, res) => {
   const { name, limit, order } = req.query;
-  const topic = await Topic.findOne({ where: { name: name } }).catch((err) => {
+  const topic = await Topic.findOne({
+    where: { name: name },
+  }).catch((err) => {
     return res.json({ message: 'No Topic found' });
   });
   const posts = await Post.findAll({
     where: { topicId: topic.id },
     limit,
     order: [['createdAt', order]],
+    include: [User, Topic],
   }).catch((err) => {
     return res.json({ message: 'No Posts Found' });
   });
   return res.json(posts);
-  //what i need to do next is
-  //start working on display feed to page
-  //also limit
-  //?limit=${postLimit}&posts=${true}
-  // try {
-  //   const topics = await Topic.findAll();
-  //   return res.json(topics);
-  // } catch (err) {
-  //   return res.json({ message: 'Something went wrong' });
-  // }
 });
 
 //WIGB, now the create post works
