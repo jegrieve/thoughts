@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import InputLabel from '@mui/material/InputLabel';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useSelector, useDispatch } from 'react-redux';
@@ -63,24 +60,40 @@ const TopicsCard = () => {
     >
       <CardContent>
         <Box>
-          <Typography variant="h3" component="span">
+          <Typography color="textSecondary" variant="h3" component="span">
             Topics
           </Typography>
           <TextField
             onChange={(e) => setSelectTopicInputs(e.target.value.toLowerCase())}
+            sx={{ marginLeft: 2 }}
             id="standard-basic"
             label="search"
             variant="standard"
           />
-          <ArrowBackIosIcon onClick={decreaseOffset} />
-          <ArrowForwardIosIcon onClick={increaseOffset} />
+          <ArrowBackIosIcon
+            sx={{ marginLeft: 2, cursor: 'pointer' }}
+            onClick={decreaseOffset}
+          />
+          <ArrowForwardIosIcon
+            sx={{ cursor: 'pointer' }}
+            onClick={increaseOffset}
+          />
         </Box>
         <Grid container spacing={1}>
           {selectedTopics.slice(offset, offset + 6).map((name) => {
             return (
               <Grid item xs={6}>
                 <Box onClick={() => setMainTopic(name)}>
-                  <Typography>{name}</Typography>
+                  <Typography
+                    className="topic-names"
+                    sx={{
+                      fontSize: 21,
+                      cursor: 'pointer',
+                      paddingLeft: 1,
+                    }}
+                  >
+                    {name}
+                  </Typography>
                 </Box>
               </Grid>
             );

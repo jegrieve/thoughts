@@ -5,6 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import SignIn from './components/Session/SignIn';
 import SignUp from './components/Session/SignUp';
 import UserProfile from './components/Userpage/UserProfile';
+
 const AppRoutes = () => {
   return (
     <Router>
