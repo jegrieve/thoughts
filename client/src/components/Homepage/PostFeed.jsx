@@ -78,7 +78,7 @@ const PostFeed = () => {
         </Select>
       </FormControl>
       {homePosts.map((data) => {
-        return <PostCard data={data} />;
+        return <PostCard getPosts={getSelectedPosts} data={data} />;
       })}
       <Button onClick={getMorePosts}>Load More</Button>
     </div>

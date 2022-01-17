@@ -4,6 +4,10 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+import ClearIcon from '@mui/icons-material/Clear';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+
 const bull = (
   <Box
     component="span"
@@ -19,13 +23,37 @@ const bull = (
 );
 
 const PostCard = (props) => {
+  const currentUser = useSelector((state) => state.user);
+
+  const deletePost = () => {
+    const token = localStorage.getItem('SavedToken');
+    axios
+      .delete(`http://localhost:5000/api/v1/delete-post/${props.data.uuid}`, {
+        headers: { Authorization: token },
+      })
+      .then(function (response) {
+        console.log(response);
+        props.getPosts();
+      })
+      .catch(function (error) {
+        console.error(error);
+      });
+  };
+
   return (
     <Card sx={{ minWidth: 275, marginTop: 2, backgroundColor: 'lightGrey' }}>
       <CardContent>
-        <Box>
-          <Typography fontWeight="bold" variant="h5">
-            {props.data.Topic.name}
-          </Typography>
+        <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+          <Box>
+            <Typography fontWeight="bold" variant="h5">
+              {props.data.Topic.name}
+            </Typography>
+          </Box>
+          {currentUser && currentUser.uuid === props.data.User.uuid && (
+            <Box onClick={deletePost} sx={{ cursor: 'pointer' }}>
+              <ClearIcon />
+            </Box>
+          )}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} paddingX={1}>
           <Box>
