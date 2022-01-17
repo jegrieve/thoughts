@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
-import { FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import { FormControl } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/index';
@@ -70,11 +67,17 @@ const CreatePost = () => {
   return (
     <Card
       variant="outlined"
-      sx={{ minWidth: 275, marginTop: 2, maxWidth: 450 }}
+      sx={{
+        minWidth: 275,
+        marginTop: 2,
+        maxWidth: 450,
+        backgroundColor: 'lightGrey',
+        textAlign: 'center',
+      }}
     >
       <CardContent>
         <Box>
-          <Typography variant="h3" component="span">
+          <Typography variant="h4" component="span">
             Create Post
           </Typography>
         </Box>
@@ -82,12 +85,19 @@ const CreatePost = () => {
           <form onSubmit={submitCreatePostInput}>
             <FormControl>
               <TextField
+                sx={{ marginTop: 1, backgroundColor: 'white', borderRadius: 1 }}
                 disabled
                 id="filled-disabled"
                 variant="filled"
                 value={getCurrentTopic()}
+                label="Current Topic:"
               />
               <TextField
+                sx={{
+                  marginTop: 1,
+                  backgroundColor: 'white',
+                  borderRadius: 1,
+                }}
                 id="outlined-multiline-static"
                 label="Thoughts?"
                 multiline
@@ -95,9 +105,16 @@ const CreatePost = () => {
                 error={formError}
                 value={postInput}
                 rows={4}
+                inputProps={{
+                  maxLength: 255,
+                }}
                 required
               />
-              <Button variant="outlined" type="submit">
+              <Button
+                sx={{ marginTop: 1, backgroundColor: 'white' }}
+                variant="outlined"
+                type="submit"
+              >
                 Create
               </Button>
             </FormControl>

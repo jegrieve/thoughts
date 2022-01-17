@@ -76,7 +76,7 @@ const CreateTopic = () => {
     >
       <CardContent>
         <Box>
-          <Typography color="textSecondary" variant="h4" component="span">
+          <Typography variant="h4" component="span">
             Create Topic
           </Typography>
         </Box>
@@ -85,7 +85,7 @@ const CreateTopic = () => {
             <FormControl>
               <TextField
                 name="name"
-                sx={{ marginTop: 2 }}
+                sx={{ marginTop: 2, backgroundColor: 'white', borderRadius: 1 }}
                 error={formError}
                 onChange={enterCreateTopicInput}
                 value={createTopicInput['name']}
@@ -96,9 +96,13 @@ const CreateTopic = () => {
                 required
                 InputLabelProps={{ required: false }}
                 id="create-topic-home"
-                label="topic"
+                label="New Topic"
               />
-              <Button sx={{ marginTop: 2 }} variant="outlined" type="submit">
+              <Button
+                sx={{ marginTop: 2, backgroundColor: 'white' }}
+                variant="outlined"
+                type="submit"
+              >
                 Create
               </Button>
             </FormControl>

@@ -65,7 +65,7 @@ const TopicsCard = () => {
     >
       <CardContent>
         <Box>
-          <Typography color="textSecondary" variant="h3" component="span">
+          <Typography variant="h3" component="span">
             Topics
           </Typography>
           <TextField
