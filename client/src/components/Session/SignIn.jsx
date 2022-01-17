@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import { FormControl, InputLabel, Input, FormHelperText } from '@mui/material';
+import { FormControl } from '@mui/material';
 import { TextField } from '@mui/material';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/index';
 const SignIn = () => {
@@ -19,11 +18,10 @@ const SignIn = () => {
     password: '',
   });
   const [formError, setFormError] = useState(false);
-  const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
-  console.log(user);
 
-  const { getUser, removeUser } = bindActionCreators(actionCreators, dispatch);
+  const dispatch = useDispatch();
+
+  const { getUser } = bindActionCreators(actionCreators, dispatch);
 
   const navigate = useNavigate();
 
@@ -58,7 +56,7 @@ const SignIn = () => {
 
   return (
     <Container maxWidth="sm">
-      <Card sx={{ marginTop: 10 }}>
+      <Card sx={{ marginTop: 10, backgroundColor: 'darkGrey' }}>
         <CardContent>
           <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h2">Sign In</Typography>
@@ -66,7 +64,11 @@ const SignIn = () => {
               <FormControl onSubmit={submitUserInputs}>
                 <TextField
                   error={formError}
-                  sx={{ marginTop: 3 }}
+                  sx={{
+                    marginTop: 3,
+                    backgroundColor: 'white',
+                    borderRadius: 1,
+                  }}
                   required
                   onChange={enterSignInInputs}
                   value={signInUserInputs['username']}
@@ -77,7 +79,11 @@ const SignIn = () => {
                 />
                 <TextField
                   error={formError}
-                  sx={{ marginTop: 3 }}
+                  sx={{
+                    marginTop: 3,
+                    backgroundColor: 'white',
+                    borderRadius: 1,
+                  }}
                   required
                   type="password"
                   name="password"
@@ -87,7 +93,11 @@ const SignIn = () => {
                   id="sign-in-password"
                   label="Password"
                 />
-                <Button variant="outlined" type="submit" sx={{ marginTop: 3 }}>
+                <Button
+                  variant="outlined"
+                  type="submit"
+                  sx={{ marginTop: 3, backgroundColor: 'white' }}
+                >
                   Sign In
                 </Button>
               </FormControl>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import PostCard from './PostCard';
 import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import Select from '@mui/material/Select';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
@@ -68,8 +67,6 @@ const PostFeed = () => {
           labelId="demo-simple-select-standard-label"
           id="demo-simple-select-standard"
           defaultValue={'newest'}
-          // value={age}
-          // onChange={handleChange}
         >
           <MenuItem onClick={getNewestPosts} value={'newest'}>
             newest

@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const PostCard = (props) => {
   return (
-    <Card sx={{ minWidth: 275, marginTop: 2 }}>
+    <Card sx={{ minWidth: 275, marginTop: 2, backgroundColor: 'lightGrey' }}>
       <CardContent>
         <Box>
           <Typography variant="h5">{props.data.Topic.name}</Typography>

@@ -59,7 +59,7 @@ const SignUp = () => {
   };
   return (
     <Container maxWidth="sm">
-      <Card sx={{ marginTop: 10 }}>
+      <Card sx={{ marginTop: 10, backgroundColor: 'darkGrey' }}>
         <CardContent>
           <Box sx={{ textAlign: 'center' }}>
             <Typography variant="h2">Sign Up</Typography>
@@ -67,8 +67,16 @@ const SignUp = () => {
               <FormControl>
                 <TextField
                   required
-                  sx={{ marginTop: 3 }}
+                  sx={{
+                    marginTop: 3,
+                    backgroundColor: 'white',
+                    borderRadius: 1,
+                  }}
                   InputLabelProps={{ required: false }}
+                  inputProps={{
+                    maxLength: 12,
+                    minLength: 3,
+                  }}
                   onChange={enterSignUpInputs}
                   error={formError}
                   name="username"
@@ -77,7 +85,15 @@ const SignUp = () => {
                 />
                 <TextField
                   required
-                  sx={{ marginTop: 3 }}
+                  sx={{
+                    marginTop: 3,
+                    backgroundColor: 'white',
+                    borderRadius: 1,
+                  }}
+                  inputProps={{
+                    maxLength: 30,
+                    minLength: 8,
+                  }}
                   InputLabelProps={{ required: false }}
                   onChange={enterSignUpInputs}
                   name="email"
@@ -87,15 +103,27 @@ const SignUp = () => {
                 />
                 <TextField
                   required
-                  sx={{ marginTop: 3 }}
+                  sx={{
+                    marginTop: 3,
+                    backgroundColor: 'white',
+                    borderRadius: 1,
+                  }}
                   InputLabelProps={{ required: false }}
+                  inputProps={{
+                    maxLength: 20,
+                    minLength: 3,
+                  }}
                   onChange={enterSignUpInputs}
                   name="password"
                   id="sign-up-password"
                   label="Password"
                   type="password"
                 />
-                <Button sx={{ marginTop: 3 }} variant="outlined" type="submit">
+                <Button
+                  sx={{ marginTop: 3, backgroundColor: 'white' }}
+                  variant="outlined"
+                  type="submit"
+                >
                   Sign Up
                 </Button>
               </FormControl>
