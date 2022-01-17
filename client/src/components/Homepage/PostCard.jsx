@@ -1,25 +1,53 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Link } from 'react-router-dom';
+const bull = (
+  <Box
+    component="span"
+    sx={{
+      display: 'flex',
+      alignItems: 'center',
+      mx: '3px',
+      transform: 'scale(1.5)',
+    }}
+  >
+    •
+  </Box>
+);
 
 const PostCard = (props) => {
   return (
     <Card sx={{ minWidth: 275, marginTop: 2, backgroundColor: 'lightGrey' }}>
       <CardContent>
         <Box>
-          <Typography variant="h5">{props.data.Topic.name}</Typography>
+          <Typography fontWeight="bold" variant="h5">
+            {props.data.Topic.name}
+          </Typography>
         </Box>
-        <Box display="flex" paddingX={1}>
+        <Box sx={{ display: 'flex', alignItems: 'center' }} paddingX={1}>
           <Box>
-            <Typography component="p">
-              <Link to={`/user/${props.data.User.uuid}`}>
+            <Link
+              className="no-decoration decorate-hover"
+              to={`/user/${props.data.User.uuid}`}
+            >
+              <Typography
+                sx={{ paddingRight: 1, color: 'white' }}
+                component="p"
+              >
                 {props.data.User.username}
-              </Link>
+              </Typography>
+            </Link>
+          </Box>
+          {bull}
+          <Box>
+            <Typography
+              sx={{ fontSize: 12, fontStyle: 'italic', paddingLeft: 1 }}
+              component="p"
+            >
+              {props.data.createdAt}
             </Typography>
           </Box>
         </Box>

@@ -40,6 +40,7 @@ const PostFeed = () => {
       )
       .then((res) => {
         if (res.data) {
+          console.log(res.data);
           setHomePosts(res.data);
         }
       })
