@@ -1,3 +1,12 @@
 .topic-names:hover {
   text-decoration: underline;
 }
+
+.no-decoration {
+  text-decoration: none;
+}
+
+.decorate-hover:hover {
+  text-decoration: underline;
+  color: white;
+}

@@ -4,12 +4,12 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-import IconButton from '@mui/material/IconButton';
-import { Menu as MenuIcon } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/index';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/thoughtsLogo.png';
+
 const Navbar = () => {
   const user = useSelector((state) => state.user);
 
@@ -26,29 +26,52 @@ const Navbar = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: 'lightGrey' }}>
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <Link to="/">Thoughts</Link>
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{ flexGrow: 1, marginLeft: 3 }}
+          >
+            <Link to="/">
+              <img src={logo} width={110} />
+            </Link>
           </Typography>
           {user ? (
-            <Box>
-              <Box sx={{ display: 'inline' }}>
-                <Link to={`/user/${user.uuid}`}>{user.username}</Link>
+            <Box sx={{ display: 'flex', alignItems: 'center' }}>
+              <Box sx={{ marginRight: 3 }}>
+                <Link
+                  className="no-decoration decorate-hover"
+                  to={`/user/${user.uuid}`}
+                >
+                  <Typography sx={{ fontSize: 26, color: 'white' }}>
+                    {user.username}
+                  </Typography>
+                </Link>
               </Box>
-              <Box
-                onClick={logoutUser}
-                sx={{ paddingLeft: 2, display: 'inline' }}
-              >
-                Logout
+              <Box>
+                <Button
+                  sx={{ fontSize: 17, paddingTop: 1 }}
+                  onClick={logoutUser}
+                >
+                  Sign Out
+                </Button>
               </Box>
             </Box>
           ) : (
             <Box>
-              <Button color="inherit">
-                <Link to="/sign-in">Sign In</Link>
-              </Button>
-              <Button color="inherit">
-                <Link to="/sign-up">Sign Up</Link>
-              </Button>
+              <Link
+                className="no-decoration"
+                sx={{ fontSize: 21 }}
+                to="/sign-in"
+              >
+                <Button>Sign In</Button>
+              </Link>
+              <Link
+                className="no-decoration"
+                to="/sign-up"
+                sx={{ fontSize: 21 }}
+              >
+                <Button>Sign Up</Button>
+              </Link>
             </Box>
           )}
         </Toolbar>
