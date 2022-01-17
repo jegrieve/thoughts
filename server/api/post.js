@@ -73,46 +73,19 @@ router.get('/user-posts', async (req, res) => {
   return res.json(posts);
 });
 
-//WIGB, now the create post works
-//make the frontend now able to create posts.
-
-//then after that works, make a router for
-//GETting posts based on topic.
-
-// router.post('/users', async (req, res) => {
-//   const { name, email, password, bio } = req.body;
-
-//   try {
-//     const user = await User.create({ name, email, password, bio });
-
-//     return res.json(user);
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).json(err);
-//   }
-// });
-
-// router.get('/users', async (req, res) => {
-//   try {
-//     const users = await User.findAll();
-
-//     return res.json(users);
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).json({ error: 'Something went wrong' });
-//   }
-// });
-
-// router.get('/users/:uuid', async (req, res) => {
-//   const uuid = req.params.uuid;
-//   try {
-//     const user = await User.findOne({
-//       where: { uuid },
-//     });
-//     return res.json(user);
-//   } catch (err) {
-//     console.log(err);
-//     return res.status(500).json({ error: 'Something went wrong' });
-//   }
-// });
+router.delete(
+  '/delete-post/:uuid',
+  passport.authenticate('jwt', { session: false }),
+  async (req, res) => {
+    console.log(req.query);
+    const uuid = req.params.uuid;
+    const post = await Post.findOne({ where: { uuid } }).catch((err) => {
+      return res.json(err);
+    });
+    const destroyedPost = post.destroy().catch((err) => {
+      return res.json(err);
+    });
+    return res.json({ message: 'Post deleted!' });
+  }
+);
 module.exports = router;
