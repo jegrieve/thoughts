@@ -1,4 +1,5 @@
 'use strict';
+const moment = require('moment');
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Post extends Model {
@@ -39,6 +40,15 @@ module.exports = (sequelize, DataTypes) => {
       topicId: {
         type: DataTypes.INTEGER,
         allowNull: false,
+      },
+      createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        get() {
+          return moment(this.getDataValue('createdAt')).format(
+            '[Shared on] MMM DD YYYY [at] h:mm a'
+          );
+        },
       },
     },
     {
