@@ -78,7 +78,7 @@ const CreatePost = () => {
       <CardContent>
         <Box>
           <Typography variant="h4" component="span">
-            Create Post
+            Create Thought
           </Typography>
         </Box>
         <Box>

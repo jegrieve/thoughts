@@ -29,9 +29,9 @@ const Home = () => {
               <CreatePost />
             </Box>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <Typography variant="h3" component="span">
-              Post feed
+          <Grid item xs={12} md={6} marginTop={2}>
+            <Typography variant="h4" component="span">
+              Thoughts:
             </Typography>
             <PostFeed />
           </Grid>
