@@ -56,7 +56,12 @@ const TopicsCard = () => {
   return (
     <Card
       variant="outlined"
-      sx={{ minWidth: 275, marginTop: 2, maxWidth: 450 }}
+      sx={{
+        minWidth: 275,
+        marginTop: 2,
+        maxWidth: 450,
+        backgroundColor: 'lightGrey',
+      }}
     >
       <CardContent>
         <Box>
