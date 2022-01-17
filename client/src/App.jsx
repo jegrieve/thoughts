@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { actionCreators } from './state/index';
 import axios from 'axios';
+import './stylesheets/App.css';
 
 const App = () => {
   const user = useSelector((state) => state.user);
