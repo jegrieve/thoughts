@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -15,9 +15,8 @@ const CreateTopic = () => {
   const [createTopicInput, setCreateTopicInput] = useState({ name: '' });
   const [formError, setFormError] = useState(false);
   const topics = useSelector((state) => state.topic);
-  const state = useSelector((s) => s);
-  console.log(state);
   const dispatch = useDispatch();
+
   const { setMainTopic, appendTopic } = bindActionCreators(
     actionCreators,
     dispatch
@@ -67,11 +66,17 @@ const CreateTopic = () => {
   return (
     <Card
       variant="outlined"
-      sx={{ minWidth: 275, marginTop: 2, maxWidth: 450 }}
+      sx={{
+        minWidth: 275,
+        marginTop: 2,
+        maxWidth: 450,
+        backgroundColor: 'lightGrey',
+        textAlign: 'center',
+      }}
     >
       <CardContent>
         <Box>
-          <Typography variant="h3" component="span">
+          <Typography color="textSecondary" variant="h4" component="span">
             Create Topic
           </Typography>
         </Box>
@@ -80,15 +85,20 @@ const CreateTopic = () => {
             <FormControl>
               <TextField
                 name="name"
+                sx={{ marginTop: 2 }}
                 error={formError}
                 onChange={enterCreateTopicInput}
                 value={createTopicInput['name']}
+                inputProps={{
+                  maxLength: 15,
+                  minLength: 3,
+                }}
                 required
                 InputLabelProps={{ required: false }}
                 id="create-topic-home"
                 label="topic"
               />
-              <Button variant="outlined" type="submit">
+              <Button sx={{ marginTop: 2 }} variant="outlined" type="submit">
                 Create
               </Button>
             </FormControl>
