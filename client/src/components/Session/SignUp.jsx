@@ -44,7 +44,6 @@ const SignUp = () => {
         password: signUpUserInputs['password'],
       })
       .then(function (response) {
-        console.log(response);
         if (response.data.newUser) {
           localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
           getUser(response.data.newUser);

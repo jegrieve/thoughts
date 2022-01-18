@@ -77,7 +77,6 @@ router.delete(
   '/delete-post/:uuid',
   passport.authenticate('jwt', { session: false }),
   async (req, res) => {
-    console.log(req.query);
     const uuid = req.params.uuid;
     const post = await Post.findOne({ where: { uuid } }).catch((err) => {
       return res.json(err);

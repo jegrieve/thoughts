@@ -19,7 +19,7 @@ app.use(cors());
 app.use('/api/v1', api);
 
 app.listen({ port: 5000 }, async () => {
-  console.log('Server running on localhost:5000');
+  console.log('Server running');
   await sequelize.authenticate();
   console.log('Database Connected!');
 });

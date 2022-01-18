@@ -40,7 +40,6 @@ const SignIn = () => {
         password: signInUserInputs['password'],
       })
       .then(function (response) {
-        console.log(response);
         if (response.data.user) {
           localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
           getUser(response.data.user);

@@ -38,7 +38,6 @@ router.post('/login-session', async (req, res) => {
   const decoded = jwt.verify(jwtToken, process.env.JWT_SECRET);
   const user = await User.findOne({ where: { id: decoded.id } }).catch(
     (err) => {
-      console.log('No Users Found');
       res.json({ message: 'No user found' });
     }
   );

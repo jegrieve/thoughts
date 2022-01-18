@@ -32,7 +32,6 @@ const PostCard = (props) => {
         headers: { Authorization: token },
       })
       .then(function (response) {
-        console.log(response);
         props.getPosts();
       })
       .catch(function (error) {

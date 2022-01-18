@@ -9,7 +9,6 @@ import './stylesheets/App.css';
 const App = () => {
   const user = useSelector((state) => state.user);
   const topic = useSelector((state) => state.topic);
-  console.log(topic);
 
   const dispatch = useDispatch();
   const { getUser, setTopics } = bindActionCreators(actionCreators, dispatch);
@@ -47,7 +46,6 @@ const App = () => {
         console.log(err);
       });
   }, []);
-  console.log(user);
 
   return <Routes />;
 };

@@ -50,12 +50,10 @@ const CreatePost = () => {
       )
       .then(function (response) {
         if (response.data.uuid) {
-          console.log(response);
           setFormError(false);
           setPostInput('');
           setHomeLimit(postLimit + 1);
         } else {
-          console.log(response);
           setFormError(true);
         }
       })

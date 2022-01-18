@@ -21,7 +21,7 @@ const Navbar = () => {
     localStorage.removeItem('SavedToken');
     removeUser();
   };
-  console.log(user);
+
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ backgroundColor: 'lightGrey' }}>
