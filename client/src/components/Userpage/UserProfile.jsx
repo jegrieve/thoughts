@@ -47,7 +47,7 @@ const UserProfile = (props) => {
           {userPosts.length > 0 ? (
             <>
               {userPosts.map((data) => {
-                return <PostCard data={data} />;
+                return <PostCard getPosts={false} data={data} />;
               })}
             </>
           ) : (

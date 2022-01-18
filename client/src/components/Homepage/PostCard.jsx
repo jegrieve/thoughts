@@ -49,11 +49,13 @@ const PostCard = (props) => {
               {props.data.Topic.name}
             </Typography>
           </Box>
-          {currentUser && currentUser.uuid === props.data.User.uuid && (
-            <Box onClick={deletePost} sx={{ cursor: 'pointer' }}>
-              <ClearIcon />
-            </Box>
-          )}
+          {currentUser &&
+            currentUser.uuid === props.data.User.uuid &&
+            props.getPosts && (
+              <Box onClick={deletePost} sx={{ cursor: 'pointer' }}>
+                <ClearIcon />
+              </Box>
+            )}
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center' }} paddingX={1}>
           <Box>
