@@ -17,6 +17,7 @@ const CreatePost = () => {
   const postLimit = useSelector((state) => state.homeLimit);
   const currentTopic = useSelector((state) => state.mainTopic);
   const topic = useSelector((state) => state.mainTopic);
+  const user = useSelector((state) => state.user);
 
   const dispatch = useDispatch();
   const { setHomeLimit } = bindActionCreators(actionCreators, dispatch);
@@ -114,10 +115,25 @@ const CreatePost = () => {
                 sx={{ marginTop: 1, backgroundColor: 'white' }}
                 variant="outlined"
                 type="submit"
+                disabled={(() => {
+                  if (user) {
+                    return false;
+                  }
+                  return true;
+                })()}
               >
                 Create
               </Button>
             </FormControl>
+            {!user ? (
+              <Box>
+                <Typography sx={{ fontSize: 12, fontStyle: 'italic' }}>
+                  must be signed in to create
+                </Typography>
+              </Box>
+            ) : (
+              false
+            )}
           </form>
         </Box>
       </CardContent>

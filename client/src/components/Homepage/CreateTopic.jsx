@@ -14,7 +14,10 @@ import { actionCreators } from '../../state/index';
 const CreateTopic = () => {
   const [createTopicInput, setCreateTopicInput] = useState({ name: '' });
   const [formError, setFormError] = useState(false);
+
   const topics = useSelector((state) => state.topic);
+  const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
 
   const { setMainTopic, appendTopic } = bindActionCreators(
@@ -102,10 +105,25 @@ const CreateTopic = () => {
                 sx={{ marginTop: 2, backgroundColor: 'white' }}
                 variant="outlined"
                 type="submit"
+                disabled={(() => {
+                  if (user) {
+                    return false;
+                  }
+                  return true;
+                })()}
               >
                 Create
               </Button>
             </FormControl>
+            {!user ? (
+              <Box>
+                <Typography sx={{ fontSize: 12, fontStyle: 'italic' }}>
+                  must be signed in to create
+                </Typography>
+              </Box>
+            ) : (
+              false
+            )}
           </form>
         </Box>
       </CardContent>
