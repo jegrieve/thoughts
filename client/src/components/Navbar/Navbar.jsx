@@ -31,7 +31,7 @@ const Navbar = () => {
             component="div"
             sx={{ flexGrow: 1, marginLeft: 3 }}
           >
-            <Link to="/">
+            <Link to="/home">
               <img src={logo} width={110} />
             </Link>
           </Typography>

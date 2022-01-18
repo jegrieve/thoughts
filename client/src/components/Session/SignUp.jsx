@@ -48,7 +48,7 @@ const SignUp = () => {
         if (response.data.newUser) {
           localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
           getUser(response.data.newUser);
-          navigate('/');
+          navigate('/home');
         } else {
           setFormError(true);
         }

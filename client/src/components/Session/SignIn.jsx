@@ -44,7 +44,7 @@ const SignIn = () => {
         if (response.data.user) {
           localStorage.setItem('SavedToken', 'Bearer ' + response.data.token);
           getUser(response.data.user);
-          navigate('/');
+          navigate('/home');
         } else {
           setFormError(true);
         }
