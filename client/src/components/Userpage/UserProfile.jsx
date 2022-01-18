@@ -44,16 +44,28 @@ const UserProfile = (props) => {
           </Box>
         </Grid>
         <Grid item xs={12} md={6}>
-          {userPosts.map((data) => {
-            return <PostCard data={data} />;
-          })}
-          <Button
-            onClick={() => {
-              setPostLimit(postLimit + 5);
-            }}
-          >
-            Load More
-          </Button>
+          {userPosts.length > 0 ? (
+            <>
+              {userPosts.map((data) => {
+                return <PostCard data={data} />;
+              })}
+            </>
+          ) : (
+            <Box sx={{ marginTop: 3, marginLeft: 1 }}>
+              <Typography fontStyle="italic" variant="h5">
+                No recent thoughts.
+              </Typography>
+            </Box>
+          )}
+          {userPosts.length > 0 && (
+            <Button
+              onClick={() => {
+                setPostLimit(postLimit + 5);
+              }}
+            >
+              Load More
+            </Button>
+          )}
         </Grid>
       </Grid>
     </Container>

@@ -85,9 +85,9 @@ const TopicsCard = () => {
           />
         </Box>
         <Grid container spacing={1}>
-          {selectedTopics.slice(offset, offset + 6).map((name) => {
+          {selectedTopics.slice(offset, offset + 6).map((name, i) => {
             return (
-              <Grid item xs={6}>
+              <Grid key={name} item xs={6}>
                 <Box onClick={() => setMainTopic(name)}>
                   <Typography
                     className="topic-names"

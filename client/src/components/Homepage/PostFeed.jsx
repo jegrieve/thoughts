@@ -8,6 +8,9 @@ import { bindActionCreators } from 'redux';
 import { actionCreators } from '../../state/index';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const PostFeed = () => {
   const mainTopic = useSelector((state) => state.mainTopic);
@@ -77,10 +80,34 @@ const PostFeed = () => {
           </MenuItem>
         </Select>
       </FormControl>
-      {homePosts.map((data) => {
-        return <PostCard getPosts={getSelectedPosts} data={data} />;
-      })}
-      <Button onClick={getMorePosts}>Load More</Button>
+      {homePosts === null ? (
+        <Box sx={{ marginTop: 3, fontSize: 30 }}>
+          <CircularProgress size={100} />
+        </Box>
+      ) : homePosts.length ? (
+        <>
+          {homePosts.map((data) => {
+            return (
+              <PostCard
+                key={data.uuid}
+                getPosts={getSelectedPosts}
+                data={data}
+              />
+            );
+          })}
+        </>
+      ) : (
+        <Box sx={{ marginTop: 3, marginLeft: 1 }}>
+          <Typography fontStyle="italic" variant="h5">
+            No thoughts on this topic yet.
+          </Typography>
+        </Box>
+      )}
+      {homePosts && homePosts.length ? (
+        <Button onClick={getMorePosts}>Load More</Button>
+      ) : (
+        false
+      )}
     </div>
   );
 };
