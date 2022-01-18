@@ -1,4 +1,4 @@
-const reducer = (state = [], action) => {
+const reducer = (state = null, action) => {
   switch (action.type) {
     case 'setHomePosts':
       return action.payload;
