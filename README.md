@@ -40,3 +40,7 @@ thoughts is a website that allows you to share your thoughts on various topics.
   <div>
     Icons: Material-UI
   </div>
+  
+  # Screenshot
+  Homepage
+  ![thoughtsScreenshot](https://user-images.githubusercontent.com/28887182/150093846-438d4caf-bffd-49db-afa5-21a465ddf95b.PNG)
